@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragment::head}">
+    <title>Error page</title>
+</head>
+<body>
+<header th:replace="~{fragments/fragment::navbar}">
+</header>
+<main id="ts-main" style="margin-top: 60px;">
+    <section id="featured-properties" class="ts-block pt-5" th:width="500px"
+             style="background-image: url(/img/error-500.jpg);background-size: 80%">
+        <div class="container" >
+            <!--Title-->
+            <div class="ts-title text-center" style="margin-bottom:1rem;">
+                <h1 class="border-bottom text-center text-light" style="background:#dd0b35">Error</h1>
+            </div>
+            <div class="ts-title text-center" style="margin-top:350px; margin-bottom:1rem;">
+                <h3 class="border-bottom text-center text-light"
+                    th:text="${message}"
+                    style="background: #e20c37"></h3>
+            </div>
+        </div>
+    </section>
+</main>
+<footer th:replace="~{fragments/fragment::footer}">
+</footer>
+</body>
+</html>
+

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/fragment::head}">
+    <title>Home page</title>
+</head>
+<body>
+<header th:replace="~{fragments/fragment::navbar}">
+</header>
+<section id="ts-hero" class="text-center mb-0" style="margin-top: 116px">
+    <div th:style="'background-image: url(/img/backround.2.jpg); background-size: cover'"
+         class="ts-full-screen ts-full-screen2 ts-center__both">
+        <!--Container-->
+        <div class="container py-2 py-sm-5">
+            <form method="GET" th:action="@{/search}"
+                  accept-charset="UTF-8" id="frontSearch"
+                  th:object="${offerModel}"
+                  class="homeQuickSearchForm ts-form p-3 my-5 ts-border-radius__md ts-borderless-inputs">
+                <!--Row-->
+                <div class="row  custom-gutters">
+                    <div class="col-sm-6 col-md-4 col-lg-2 d-none d-sm-block">
+                        <div class="my-2">
+                            <select id="searchType"
+                                    th:field="*{type}"
+                                    class="listingTypeSelect custom-select my-2 border-left ts-selected" name="searchType">
+                                <option th:value="SALE" selected="">Sale</option>
+                                <option th:value="RENT">Rental</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6 d-block d-sm-none">
+                        <div class="home-radio my-2">
+                            <input id="listingTypeSale" class="listingTypeRadio" name="listingType2" type="radio" th:value="SALE" checked="checked">
+                            <label class="form-control" for="listingTypeSale">Sale</label>
+                        </div>
+                    </div>
+                    <div class="col-6 d-block d-sm-none">
+                        <div class="home-radio my-2">
+                            <input id="listingTypeRent" class="listingTypeRadio" name="listingType2" type="radio" th:value="RENT">
+                            <label class="form-control" for="listingTypeRent">Rental</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-2">
+                        <select th:field="*{category}" class="custom-select my-2 border-left ts-selected"
+                                id="searchCategory" style="" name="searchCategory">
+                            <option th:each="c : ${categories}"
+                                    th:value="${c}"
+                                    th:text="${c.name}">Residential</option>
+                            </select>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg-2">
+                        <select th:field="*{city}" class="custom-select my-2 border-left ts-selected"
+                                id="searchCity" required="required" data-level="2" style=""
+                                name="searchCity">
+                            <option th:each="c : ${cities}"
+                                    th:value="${c}"
+                                    th:text="${c.name}"
+                                    >Athens - South</option>
+                            </select>
+                    </div>
+                    <div class="col-6 col-sm-3 col-md-2">
+                        <div class="input-group" style="margin-bottom: .5rem!important;
+                                                         margin-top: .5rem!important;">
+                            <input class="form-control border-right-0 numeric"
+                                   id="priceLow"
+                                   placeholder="Price from" data-thousand="."
+                                   name="priceLow" type="text" value="">
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-white border-left-0">€</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-3 col-md-2">
+                        <div class="input-group" style="margin-bottom: .5rem!important;
+                                                         margin-top: .5rem!important;">
+                            <input class="form-control border-right-0 numeric"
+                                   id="priceHigh"
+                                   placeholder="Price to" data-thousand="." name="priceHigh"
+                                   type="text" value="">
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-white border-left-0">€</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4 col-lg-2">
+                        <div class="form-group my-2">
+                            <button type="submit" class="btn btn-primary w-100" id="search-btn">Find Property</button>
+                        </div>
+                    </div>
+                </div>
+                <!--end more-options-collapse-->
+            </form>
+            <a th:href="@{/all}" class="btn btn-outline-light btn-sm mt-5 d-none d-md-inline-block">All our properties</a>
+
+        <!--end container-->
+
+<!--        <div class="ts-background ts-hero-slider ts-bg-black">-->
+<!--            <div class="ts-background-image ts-opacity__50">-->
+<!--                <div class="owl-carousel owl-loaded owl-drag" data-owl-loop="1" data-owl-fadeout="1" data-owl-autoplay="1" data-owl-autoplay-timeout="8000">-->
+<!--                    <div class="owl-stage-outer">-->
+<!--                        <div class="owl-stage" style="transform: translate3d(-3859px, 0px, 0px); transition: all 0s ease 0s; width: 6754px;">-->
+<!--                            <div class="owl-item cloned" style="width: 964.8px;">-->
+<!--                                <div class="ts-slide" data-bg-image="/img/backround.jpg" style="background-image: url(/img/backround.jpg);">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="owl-item cloned" style="width: 964.8px;">-->
+<!--                               <div class="ts-slide" data-bg-image="/img/backround.2.jpg" style="background-image: url(/img/backround.2.jpg);">-->
+<!--                               </div>-->
+<!--                            </div>-->
+<!--                            <div class="owl-item" style="width: 964.8px;">-->
+<!--                                <div class="ts-slide" data-bg-image="/img/role-config.jpg" style="background-image: url(/img/role-config.jpg);">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="owl-item" style="width: 964.8px;">-->
+<!--                                <div class="ts-slide" data-bg-image="/img/vitosha.jpg" style="background-image: url(/img/vitosha.jpg);">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="owl-item active" style="width: 964.8px;">-->
+<!--                                <div class="ts-slide" data-bg-image="/img/fition3.jpg" style="background-image: url(/img/fition3.jpg);">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="owl-item cloned" style="width: 964.8px;">-->
+<!--                                <div class="ts-slide" data-bg-image="/img/Bkg.jpg" style="background-image: url(/img/Bkg.jpg);">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="owl-nav disabled">-->
+<!--                        <div class="owl-prev">-->
+<!--                        </div>-->
+<!--                        <div class="owl-next">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="owl-dots disabled">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+    </div>
+    <!--end ts-full-screen-->
+</section>
+<main id="ts-main">
+    <section id="featured-properties" class="ts-block pt-5">
+        <div class="container">
+            <!--Title-->
+            <div class="ts-title text-center">
+            </div>
+
+            <div class="row" id="offerList#1">
+                <div  th:each="o : ${offers}" th:object="${o}"
+                        class="col-sm-6 col-lg-4">
+                    <a th:href="@{/comments/search/{id}(id=*{id})}" class="card ts-item ts-card ts-item__lg">
+                        <img class="card-img-top  ts-item__image ts-item-tpp" th:src="*{imgUrl}" data-holder-rendered="true"
+                             style="height: 225px; width: 100%; display: block;">
+                        <div class="card-body">
+                            <div th:text="|€ *{price}|"
+                                 th:value="*{price}"
+                                    class="ts-item__info-badge">
+                                € 69,000
+                            </div>
+                            <figure class="ts-item__info" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)">
+                                <h4 th:text="|*{category} for *{type}|">Apartment for sale</h4>
+                                <aside>
+                                    <i class="fa fa-map-marker mr-2">
+                                        <i th:text="|  *{city}, *{address}|" style="font-style: normal; font-weight: normal"></i></i>
+                                </aside>
+                            </figure>
+                            <div class="ts-description-lists">
+                                <dl>
+                                    <dt>Area</dt>
+                                    <dd th:text="|*{area} m²|"
+                                    >34 m²</dd>
+                                </dl>
+                                <dl>
+                                    <dt th:text="|Price per sq.m|">Rooms</dt>
+                                    <dd th:text="|*{pricePerSqM}€/m²|"
+                                    >1</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="card-footer"><span class="ts-btn-arrow">Details</span></div>
+                    </a>
+                </div>
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+</main>
+<footer th:replace="~{fragments/fragment::footer}">
+</footer>
+<script th:src="@{js/search-bar.js}"></script>
+</body>
+</html>

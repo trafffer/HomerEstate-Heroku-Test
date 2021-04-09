@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/fragment::head}">
+    <title>Details offer</title>
+</head>
+<body>
+<header th:replace="~{fragments/fragment::navbar}">
+</header>
+<main th:object="${offerModel}"  id="ts-main" style="margin-top: 116px;">
+
+    <!--GALLERY CAROUSEL
+     =========================================================================================================-->
+    <section id="gallery-carousel" class="" style="margin-bottom:10px;">
+        <div class="swiper-container ts-gallery-carousel ts-gallery-carousel__multi details-custom-slider swiper-container-initialized swiper-container-horizontal swiper-container-free-mode show">
+            <div  class="swiper-wrapper row" style="transform: translate3d(0px, 0px, 0px);">
+                <div th:each="p : *{imgUrl}" class="swiper-slide swiper-slide-active col" style="margin-right: 20px;">
+                    <a th:href="${p}" class="popup-image" style="display: block">
+                        <img th:src="${p}" alt="">
+                        <span th:href="${p}" class="ts-zoom">
+                                <i class="fa fa-search-plus" style="margin:0;"></i>
+                            </span>
+                    </a>
+                </div>
+
+            </div>
+            <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
+                <span th:each="p : *{imgUrl}" class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
+                </div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+    </section>
+
+    <!--PAGE TITLE
+     =========================================================================================================-->
+    <section id="page-title" class="border-bottom ts-white-gradient">
+        <div class="container">
+            <div class="d-block d-sm-flex justify-content-between">
+
+                <div class="ts-title mb-0">
+                    <h1 th:text="|*{category.name} for *{type.name}|" style="font-size: 1.8rem;"></h1>
+                    <h5 class="">
+                        <i class="fa fa-map-marker text-primary"></i>
+                        <span th:text="|*{city.name}, *{address}|"></span>
+                    </h5>
+                </div>
+                <div>
+                    <h3>
+                            <span th:text="|€ *{price}|"
+                                    class="badge badge-primary p-3 font-weight-normal ts-shadow__sm">
+                            </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--CONTENT
+      =========================================================================================================-->
+    <section id="content">
+        <div class="container">
+            <div class="row flex-wrap-reverse">
+
+                <!--LEFT SIDE
+                    =============================================================================================-->
+                <div class="col-md-5 col-lg-4">
+
+                    <!--CONTACT THE AGENT
+                        =========================================================================================-->
+                    <section id="submit-form">
+                        <div class="ts-box">
+                            <!--Agent Image & Phone-->
+                            <div class="ts-center__vertical mb-4">
+                                <!--Image-->
+                                <!--Phone contact-->
+                                <figure class="mb-0">
+                                    <h5 class="mb-0">Appoint time for visit</h5>
+                                </figure>
+                            </div>
+                            <form th:object="${comment}"
+                                    method="POST" th:action="@{/comments/search/{id}(id=${offerModel.id})}"
+                                 class="ts-form custom-form">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <label for="timeForVisit" th:text="|Time for visit:|"
+                                               class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-form-label">StartedOn Date
+                                        </label>
+                                        <input th:field="*{timeForVisit}"
+                                               th:errorclass="is-invalid" id="timeForVisit"
+                                               name="startedOn" type="datetime-local"
+                                               class="form-control validate col-xl-12 col-lg-12 col-md-12 col-sm-12"
+                                               data-large-mode="true"/>
+                                        <small th:if="${#fields.hasErrors('timeForVisit')}"
+                                             class="invalid-feedback text-light form-text bg-danger rounded"
+                                            th:errors="*{timeForVisit}"
+                                                  >The date cannot be in the future!</small>
+                                    </div>
+                                    <div class="form-group">
+                                    <textarea th:field="*{textContent}"
+                                              th:errorclass="is-invalid"
+                                              th:value="*{textContent}"
+                                              class="form-control"
+                                              id="textContent"
+                                              placeholder="Comment about the property" name="textContent" cols="50" rows="10"></textarea>
+                                        <small th:if="${#fields.hasErrors('textContent')}"
+                                               class="invalid-feedback text-light form-text bg-danger rounded"
+                                               th:errors="*{textContent}">
+                                            Neshto gadno.
+                                        </small>
+                                </div>
+                                <div class="form-group clearfix mb-0">
+                                    <div class="d-flex justify-content-center mt-4">
+                                        <button class="btn btn-primary ts-btn-arrow btn-lg float-right"
+                                                type="submit" value="add this form"
+                                                onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';"
+                                        >Add comment</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                    <!--ACTIONS
+                    =============================================================================================-->
+                    <section id="actions">
+                        <div class="d-flex justify-content-between">
+                            <a id="print-button" href="https://www.homerestate.gr/en/propertyDetails/10915949?forPrint=1" class="btn btn-light mr-2 w-100" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print">
+                                <i class="fa fa-print"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.homerestate.gr/en/propertyDetails/10915949" class="btn btn-light mr-2 w-100 fbShareListingAction" data-toggle="tooltip" data-placement="top" title="" onclick="window.open(this.href, 'pop', 'width=600, height=400, scrollbars=no');return false;" rel="nofollow" data-original-title="Facebook Share">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://twitter.com/share?url=https://www.homerestate.gr/en/propertyDetails/10915949&amp;text=Apartment for sale" class="btn btn-light mr-2 w-100" data-toggle="tooltip" data-placement="top" title="" onclick="window.open(this.href,'','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=570,width=520');return false;" rel="nofollow" data-original-title="Twitter Share">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </section>
+
+                </div>
+                <!--end col-md-4-->
+
+                <!--RIGHT SIDE
+                   =============================================================================================-->
+                <div class="col-md-7 col-lg-8">
+
+                    <!--DESCRIPTION
+                        =========================================================================================-->
+                    <section id="description">
+                        <p th:text="*{description}">
+                        </p>
+                        <p>This house description is based upon information supplied by the owner, or on behalf of the owner. These property particulars are produced in good faith and do not constitute or form part of any contract HOMER do not take any responsibility to the accuracy of the information contained in this document.
+                        </p>
+                        <dl class="ts-description-list__line mb-0 ">
+                            <dt>ID:</dt>
+                            <dd th:text="*{id}" class="border-bottom pb-2">1152768</dd>
+                            <dt>Area:</dt>
+                            <dd th:text="|*{area} m²|" class="border-bottom pb-2">71 m²</dd>
+                            <dt>Price per m²</dt>
+                            <dd th:text="|€ *{pricePerSqM}|" class="border-bottom pb-2">€ 4,225</dd>
+                            <dt>City</dt>
+                            <dd th:text="*{city.name}" class="border-bottom pb-2">Monastiraki (Athens)</dd>
+                            <dt>Address</dt>
+                            <dd th:text="*{address}" class="border-bottom pb-2">Residential zone</dd>
+                            <dt>Rooms</dt>
+                            <dd th:text="*{rooms}==null ? 'n/a' : *{rooms}" class="border-bottom pb-2">1</dd>
+                            <dt>Floor</dt>
+                            <dd th:text="*{floor}" class="border-bottom pb-2">3rd</dd>
+                            <dt>Visited</dt>
+                            <dd th:text="*{visited}" class="border-bottom pb-2">3rd</dd>
+                            <dt>Added by</dt>
+                            <dd th:text="*{authorUsername}" class="border-bottom pb-2">3rd</dd>
+                            <dt>Energy class</dt>
+                            <dd class="border-bottom pb-2">
+                                <div class="energy-container">
+                                    <div class="energy energy-a" data-value="2">A</div>
+                                </div>
+                            </dd>
+                            <dt>Published on</dt>
+                            <dd th:text="*{createdOn.toLocalDate()}" class="border-bottom pb-2">19/03/2021</dd>
+                        </dl>
+                    </section>
+                    <div class="form-group clearfix mb-0">
+                        <div class="d-flex justify-content-center mt-4">
+                            <a sec:authorize="hasRole('ROLE_ADMIN')"
+                                    th:href="@{/comments/delete/{id}(id=*{id})}" class="btn btn-primary ts-btn-arrow btn-lg float-right"
+                                    style="background-color: #b21f2d; color: #f4f4f4; border-color: #b21f2d"
+                               type="button">Delete offer</a>
+                        </div>
+                    </div>
+
+
+                    <!--AMENITIES
+=========================================================================================-->
+                    <section id="comments">
+                        <h3 th:unless="${commentsList.isEmpty()}">Comments</h3>
+                        <div th:each="c : ${commentsList}" th:object="${c}" class="input-group mb-3">
+                            <label th:text="|Added by *{authorUsername} on *{createdOn}|"></label>
+                            <div th:text="*{textContent}"  id="comment"  type="text"
+                                   class="form-control validate col-xl-7 col-lg-7 col-md-7 col-sm-7"
+                            style="border-radius: 0.185rem">
+                            </div>
+                            <div th:text="|Reserved time for visit: *{timeForVisit}|"  id="visit" type="text"
+                                   class="form-control validate col-xl-5 col-lg-5 col-md-5 col-sm-5"
+                                   style="border-radius: 0.185rem">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+</main>
+<footer th:replace="~{fragments/fragment::footer}">
+</footer>
+</body>
+</html>

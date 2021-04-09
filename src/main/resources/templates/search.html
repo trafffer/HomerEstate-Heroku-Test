@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragment::head}">
+    <title>Sale page</title>
+</head>
+<body>
+<header th:replace="~{fragments/fragment::navbar}">
+</header>
+<main id="ts-main" style="margin-top: 116px;">
+    <section id="featured-properties" class="ts-block pt-5"
+             th:style="'background-image: url(/img/search.jpg)'">
+        <div class="container">
+            <!--Title-->
+            <div class="ts-title text-center" style="margin-bottom:1rem;">
+                <h1 class="border-bottom text-center text-light" style="background: #4b88a6">Property enquiry</h1>
+            </div>
+
+            <div class="row" id="offerList">
+                <div  th:each="o : ${customSearch}" th:object="${o}"
+                      class="col-sm-6 col-lg-4">
+                    <a th:href="@{/comments/search/{id}(id=*{id})}" class="card ts-item ts-card ts-item__lg">
+                        <img class="card-img-top  ts-item__image ts-item-tpp"
+                             th:src="*{imgUrl}" data-holder-rendered="true"
+                             style="height: 225px; width: 100%; display: block;" alt="">
+                        <div class="card-body">
+                            <div th:text="|€ *{price}|"
+                                 th:value="*{price}"
+                                 class="ts-item__info-badge">
+                                € 69,000
+                            </div>
+                            <figure class="ts-item__info" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)">
+                                <h4 th:text="|*{category} for *{type}|">Apartment for sale</h4>
+                                <aside>
+                                    <i class="fa fa-map-marker mr-2">
+                                        <i th:text="|  *{city}, *{address}|" style="font-style: normal; font-weight: normal"></i>
+                                    </i>
+                                </aside>
+                            </figure>
+                            <div class="ts-description-lists">
+                                <dl>
+                                    <dt>Area</dt>
+                                    <dd th:text="|*{area} m²|"
+                                    >34 m²</dd>
+                                </dl>
+                                <dl>
+                                    <dt th:text="*{rooms}==null ? 'Price per sq.m' : 'Rooms'">Rooms</dt>
+                                    <dd th:text="*{rooms}==null ? |*{pricePerSqM} €/m²| : *{rooms}"
+                                    >1</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="card-footer"><span class="ts-btn-arrow">Details</span></div>
+                    </a>
+                </div>
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+</main>
+<footer th:replace="~{fragments/fragment::footer}">
+</footer>
+</body>
+</html>

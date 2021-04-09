@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/fragment::head}">
+    <title>Login page</title>
+</head>
+<body>
+<header th:replace="~{fragments/fragment::navbar}">
+</header>
+<main id="ts-main" style="margin-top: 116px;">
+    <div class="row" style="height:500px">
+        <div class="col-sm-8 col-md-8 col-lg-8" style="background-image:url('/img/login.jpg'); background-size: cover">
+            <div class="splitPage__column__inner">
+                <section id="page-title" class="page-title" style="height: 500px">
+                    <div style="margin: 0; width: 100%; height: 100%; display:table">
+                        <h1 class="text-center text-dark"
+                            style="display:table-cell;
+                            vertical-align: middle;
+                            font-size: 64px;
+                            -webkit-text-fill-color: #f4f4f4;
+                            width: 100%;">Login</h1>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4" style="padding-top:0;">
+            <div class="splitPage__column__inner" style="padding-bottom:0;">
+                <section id="submit-form" style="margin-bottom:0;">
+                    <form method="POST" th:action="@{/users/login}"
+                          accept-charset="UTF-8" id="entrustmentEnquiry"
+                          class="ts-form custom-form">
+                      <!--  <input name="_token" type="hidden" value="LtnTh8oY8QzrvCbwoUbe1RYMwgjbN6mn1xx1b8wo">
+                        <input name="post_source" type="hidden" value="entrustmentEnquiryForm">-->
+
+                        <!--User Credentials
+                        =====================================================================================-->
+                        <section id="basic-information" class="" style="margin-bottom:1rem;">
+                            <!--Title-->
+                            <h3 class="border-bottom">Login as</h3>
+                            <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 align-items-center">
+                                <div th:if="${bad_credentials}" class="alert alert-danger" role="alert">
+                                    This username and password combination does not exist.
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row ts-column-count-2" style="margin:5px; align-items: end;">
+                                   <div class="col-sm-6 col-md-6 col-lg-6 align-items-end">
+                                    <label for="inputUsername" class="col-form-label text-dark">Username</label>
+                                   </div>
+                                   <div class="col-sm-6 col-md-6 col-lg-6">
+                                    <input type="text"
+                                           name="username"
+                                           th:value="${username}"
+                                           id="inputUsername"
+                                           class="form-control"
+                                           aria-describedby="usernameHelpInline">
+                                   </div>
+                            </div>
+                            <div class="row ts-column-count-2" style="margin:5px; align-items: end;">
+                                    <div class="col-sm-6 col-md-6 col-lg-6 align-items-end">
+                                        <label for="inputPassword" class="col-form-label text-dark">Password</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                        <input type="password" name="password" id="inputPassword" class="form-control"
+                                               aria-describedby="passwordHelpInline">
+                                    </div>
+                            </div>
+                        </section>
+                        <hr style="margin-top:0;">
+                        <section class="" style="margin-bottom:0;">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input id="acceptTermsOfUse" name="acceptTermsOfUse" type="hidden" value="1">
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="d-flex justify-content-center mt-4">
+                                        <button class="btn btn-primary ts-btn-arrow btn-lg float-right"
+                                                type="submit">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                    <!--end #form-submit-->
+                </section>
+            </div>
+            <!--end container-->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</main>
+<footer th:replace="~{fragments/fragment::footer}">
+</footer>
+</body>
+</html>

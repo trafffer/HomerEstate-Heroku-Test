@@ -1,0 +1,38 @@
+:root {
+    --color-header-bg: #ffffff;
+    --color-header-bg-rgb: 255, 255, 255;
+    --color-header-font: #000000;
+    --color-header-font-rgb: 0, 0, 0;
+    --color-top-bg: #07b159;
+    --color-top-bg-rgb: 164, 149, 120;
+    --color-top-font: #ffffff;
+    --color-top-font-rgb: 255, 255, 255;
+    --color-top-border: #ffffff;
+    --color-brand-bg: #2fd699;
+    --color-brand-bg-rgb: 137, 5, 14;
+    --color-brand-font: #191717;
+    --color-brand-font-rgb: 255, 255, 255;
+    --color-primary-bg: #ffffff;
+    --color-primary-bg-rgb: 255, 255, 255;
+    --color-primary-font: #000000;
+    --color-primary-font-rgb: 0, 0, 0;
+    --color-search-bg: #ffffff;
+    --color-search-bg-rgb: 255, 255, 255;
+    --color-tile-price-bg: #16a5d0;
+    --color-tile-price-font: #ffffff;
+    --color-tile-main-bg: #f6f6f6;
+    --color-tile-main-font: #191919;
+    --color-tile-bottom-bg: #1897bd;
+    --color-tile-bottom-font: #ffffff;
+    --color-panel-bg: #ffffff;
+    --color-panel-font: #000000;
+    --color-footer-bg: #ffffff30;
+    --color-footer-font: #191919;
+    --color-footer-font-rgb: 25, 25, 25;
+    --color-footer-bottom-bg: #07b159;
+    --color-footer-bottom-font: #ffffff;
+    --color-secondary-bg: #1897bd;
+    --color-secondary-font: #ffffff;
+    --color-logo-border: #000000;
+}
+
