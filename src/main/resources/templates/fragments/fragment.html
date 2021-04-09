@@ -66,7 +66,13 @@
             </a>
             <span  sec:authorize="${isAuthenticated()}" th:text="|WELCOME ${#authentication.name}|"
                   style="font-size: x-large" ></span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPrimary" aria-controls="navbarPrimary" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-toggler="collapse"
+                    data-target="#navbarPrimary"
+                    aria-controls="navbarPrimary"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarPrimary">
