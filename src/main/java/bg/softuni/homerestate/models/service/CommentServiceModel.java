@@ -9,7 +9,6 @@ public class CommentServiceModel {
     private UserEntity author;
     private LocalDateTime createdOn;
     private String textContent;
-    private LocalDateTime timeForVisit;
     private Offer offer;
 
     public CommentServiceModel() {
@@ -39,15 +38,6 @@ public class CommentServiceModel {
 
     public CommentServiceModel setTextContent(String textContent) {
         this.textContent = textContent;
-        return this;
-    }
-
-    public LocalDateTime getTimeForVisit() {
-        return timeForVisit;
-    }
-
-    public CommentServiceModel setTimeForVisit(LocalDateTime timeForVisit) {
-        this.timeForVisit = timeForVisit;
         return this;
     }
 

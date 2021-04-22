@@ -37,7 +37,6 @@ public class HomeController {
 
     @GetMapping("/contact")
     public String contacts() {
-
         return "contacts";
     }
 

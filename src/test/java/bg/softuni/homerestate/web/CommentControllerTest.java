@@ -82,11 +82,11 @@ public class CommentControllerTest {
         repository.save(offer);
         OfferComment comment = new OfferComment();
         comment.setCreatedOn(LocalDateTime.now()).setAuthor(author);
-        comment.setOffer(offer).setTextContent("text3").setTimeForVisit(LocalDateTime.now());
+        comment.setOffer(offer).setTextContent("text3");
         repository5.save(comment);
         OfferComment comment2 = new OfferComment();
         comment2.setCreatedOn(LocalDateTime.now()).setAuthor(author)
-                .setOffer(offer).setTextContent("newText").setTimeForVisit(LocalDateTime.now());
+                .setOffer(offer).setTextContent("newText");
         repository5.save(comment2);
 
     }

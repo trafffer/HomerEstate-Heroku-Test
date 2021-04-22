@@ -7,9 +7,8 @@ import bg.softuni.homerestate.models.entities.enums.Type;
 import bg.softuni.homerestate.models.entities.enums.UserRole;
 import bg.softuni.homerestate.models.service.CommentServiceModel;
 import bg.softuni.homerestate.models.view.CommentViewModel;
-import bg.softuni.homerestate.models.view.OfferDetailsViewModel;
-import bg.softuni.homerestate.models.view.OfferViewModel;
 import bg.softuni.homerestate.repositories.CommentRepository;
+import bg.softuni.homerestate.services.InquiryService;
 import bg.softuni.homerestate.services.OfferService;
 import bg.softuni.homerestate.services.UserService;
 import org.junit.jupiter.api.Assertions;
@@ -22,14 +21,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
 public class CommentServiceTest {
@@ -38,6 +35,8 @@ public class CommentServiceTest {
 
     @Mock
     CommentRepository mockCommentRepository;
+    @Mock
+    InquiryService mockInquireService;
     @Mock
     OfferService mockOfferService;
     @Mock
@@ -48,7 +47,8 @@ public class CommentServiceTest {
     @BeforeEach
     public void setUp() {
         serviceToBeTested =
-                new CommentServiceImpl(mockCommentRepository, mapper, mockOfferService, mockUserService);
+                new CommentServiceImpl(mockCommentRepository, mapper,
+                        mockOfferService, mockUserService, mockInquireService);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class CommentServiceTest {
 
         OfferComment comment = new OfferComment();
         comment.setCreatedOn(LocalDateTime.now()).setAuthor(author);
-        comment.setOffer(offer).setTextContent("text4").setTimeForVisit(LocalDateTime.now());
+        comment.setOffer(offer).setTextContent("text4");
 
         CommentViewModel serviceModel = new CommentViewModel();
         serviceModel.setAuthorUsername("nasko").setOfferId(0L)
@@ -153,6 +153,7 @@ public class CommentServiceTest {
     public void testDeleteById(){
         serviceToBeTested.deleteById(0L);
         Mockito.verify(mockCommentRepository, times(1)).deleteByOfferId(0L);
+        Mockito.verify(mockInquireService,times(1)).deleteByOfferId(0L);
         Mockito.verify(mockOfferService,times(1)).deleteOffer(0L);
     }
 
@@ -162,23 +163,20 @@ public class CommentServiceTest {
                 offer.setId(1L);
         OfferComment comment = new OfferComment();
         comment.setOffer(offer)
-                .setTimeForVisit(LocalDateTime.of(2020,5,22,13,14,5))
                 .setTextContent("dddd");
-        Mockito.when(mockCommentRepository.findAllByTimeForVisitBefore(any()))
+        Mockito.when(mockCommentRepository.findAllByCreatedOnBefore(any()))
                 .thenReturn(List.of(comment.setOffer(offer)));
         serviceToBeTested.deleteOldComments();
-        Mockito.verify(mockCommentRepository,times(1)).deleteByOfferId(null);
+        Mockito.verify(mockCommentRepository,times(1)).deleteById(any());
     }
-
     @Test
     public void testSheduledDeleteEmpty() throws InterruptedException {
         Offer offer = new Offer();
         offer.setId(1L);
         OfferComment comment = new OfferComment();
         comment.setOffer(offer)
-                .setTimeForVisit(LocalDateTime.of(2025,5,22,13,14,5))
                 .setTextContent("dddd");
-        Mockito.when(mockCommentRepository.findAllByTimeForVisitBefore(any()))
+        Mockito.when(mockCommentRepository.findAllByCreatedOnBefore(any()))
                 .thenReturn(new ArrayList<>());
         serviceToBeTested.deleteOldComments();
         Mockito.verifyNoInteractions(mockOfferService);

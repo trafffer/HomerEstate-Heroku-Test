@@ -29,7 +29,10 @@ public class HomerErrorController implements ErrorController {
         if (statusCode == HttpStatus.NOT_FOUND.value()) {
             model.addAttribute("message","The requested page does not exist!");
             return "error-404";
-        } else {
+        } else if (statusCode == HttpStatus.FORBIDDEN.value()){
+            model.addAttribute("message","You are not authorized to enter here!");
+            return "error-403";
+        }else {
             return "error-page";
         }
     }

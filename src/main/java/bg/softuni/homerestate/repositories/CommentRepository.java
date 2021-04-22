@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends JpaRepository<OfferComment,Long> {
     List<OfferComment> findAllByOfferId(Long id);
-    List<OfferComment> findAllByTimeForVisitBefore(LocalDateTime now);
+    List<OfferComment> findAllByCreatedOnBefore(LocalDateTime now);
     void deleteByOfferId(Long id);
 }

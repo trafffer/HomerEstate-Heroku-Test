@@ -3,9 +3,12 @@ package bg.softuni.homerestate.models.binding;
 import bg.softuni.homerestate.models.entities.enums.Category;
 import bg.softuni.homerestate.models.entities.enums.City;
 import bg.softuni.homerestate.models.entities.enums.Type;
+import org.aspectj.lang.annotation.DeclareError;
+import org.springframework.format.annotation.NumberFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.*;
+import javax.websocket.OnError;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

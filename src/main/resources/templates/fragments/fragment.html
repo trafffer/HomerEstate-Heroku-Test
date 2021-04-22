@@ -70,10 +70,10 @@
                     id="toggler"
                     type="button"
                     data-toggle="collapse"
-                    data-toggler="collapse"
                     data-target="#navbarPrimary"
                     aria-controls="navbarPrimary"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse" id="navbarPrimary">
@@ -92,6 +92,12 @@
                     </li>
                     <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item" data-type="admin">
                         <a class="nav-link mr-2" href="/roles/add" style="font-size: large">Admin</a>
+                    </li>
+                    <li sec:authorize="${isAuthenticated()}" class="nav-item" data-type="editUser">
+                        <a class="nav-link mr-2" href="/users/edit" style="font-size: large">Profile</a>
+                    </li>
+                    <li sec:authorize="${isAuthenticated()}" class="nav-item" data-type="offerInquiries">
+                        <a class="nav-link mr-2" href="/inquiries/add" style="font-size: large">Inquiries</a>
                     </li>
                     <li class="nav-item" data-type="entrustmentEnquiry">
                         <a class="nav-link mr-2" href="/about" style="font-size: large">About us</a>

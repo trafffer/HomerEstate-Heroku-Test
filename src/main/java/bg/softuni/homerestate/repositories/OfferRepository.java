@@ -1,6 +1,7 @@
 package bg.softuni.homerestate.repositories;
 
 import bg.softuni.homerestate.models.entities.Offer;
+import bg.softuni.homerestate.models.entities.UserEntity;
 import bg.softuni.homerestate.models.entities.enums.Category;
 import bg.softuni.homerestate.models.entities.enums.City;
 import bg.softuni.homerestate.models.entities.enums.Type;
@@ -27,4 +28,6 @@ public interface OfferRepository extends JpaRepository<Offer,Long> {
     List<Offer> searchOffersByCriteria(@Param("type") Type type, @Param("category") Category category,
                                        @Param("city") City city, @Param("priceMin")BigDecimal priceMin,
                                        @Param("priceMax") BigDecimal priceMax);
+
+    List<Offer> findAllByAuthorOrderByVisitedDesc(UserEntity user);
 }

@@ -4,6 +4,7 @@ import bg.softuni.homerestate.models.entities.UserEntity;
 import bg.softuni.homerestate.models.entities.UserRoleEntity;
 import bg.softuni.homerestate.models.entities.enums.UserRole;
 import bg.softuni.homerestate.models.service.UserServiceModel;
+import bg.softuni.homerestate.models.view.UserViewModel;
 import bg.softuni.homerestate.repositories.UserRepository;
 import bg.softuni.homerestate.repositories.UserRoleRepository;
 import bg.softuni.homerestate.services.HomerDBUserService;
@@ -15,6 +16,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -53,6 +55,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean userExist(String username) {
         return userRepository.findByUsername(username).isPresent();
+    }
+
+    @Override
+    public boolean emailExist(String email) {
+        return userRepository.findByEmail(email).isPresent();
     }
 
     @Override
@@ -106,5 +113,28 @@ public class UserServiceImpl implements UserService {
             user.setRoles(List.of(roleService.findByRole(UserRole.USER)));
         }
         userRepository.save(user);
+    }
+
+    @Override
+    public UserViewModel loadViewModel() {
+        UserEntity user = getUser();
+       return mapper.map(user,UserViewModel.class);
+    }
+
+    @Override
+    public void editUser(UserServiceModel userServiceModel) {
+        UserEntity user = getUser();
+        user.setUsername(userServiceModel.getUsername())
+                .setPassword(encoder.encode(userServiceModel.getPassword()))
+                .setFullName(userServiceModel.getFullName())
+                .setEmail(userServiceModel.getEmail());
+        userRepository.save(user);
+        UserDetails principal = homerDBUserService.loadUserByUsername(user.getUsername());
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                principal,
+                user.getPassword(),
+                principal.getAuthorities()
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }

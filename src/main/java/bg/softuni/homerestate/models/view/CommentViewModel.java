@@ -1,15 +1,11 @@
 package bg.softuni.homerestate.models.view;
 
 
-
-import java.time.LocalDateTime;
-
 public class CommentViewModel {
     private Long id;
     private String authorUsername;
     private String createdOn;
     private String textContent;
-    private String timeForVisit;
     private Long offerId;
 
     public CommentViewModel() {
@@ -51,15 +47,6 @@ public class CommentViewModel {
         return this;
     }
 
-
-    public String getTimeForVisit() {
-        return timeForVisit;
-    }
-
-    public CommentViewModel setTimeForVisit(String timeForVisit) {
-        this.timeForVisit = timeForVisit;
-        return this;
-    }
 
     public Long getOfferId() {
         return offerId;

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -15,6 +16,14 @@ public class GlobalAdvise {
 
     @ExceptionHandler(RuntimeException.class)
     public ModelAndView handleException(RuntimeException exception){
+        LOGGER.error("Exception caught",exception);
+        ModelAndView modelAndView = new ModelAndView("error-page");
+        modelAndView.addObject("message", exception.getMessage());
+        return modelAndView;
+    }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ModelAndView handleMaximumFileSize(MaxUploadSizeExceededException exception){
         LOGGER.error("Exception caught",exception);
         ModelAndView modelAndView = new ModelAndView("error-page");
         modelAndView.addObject("message", exception.getMessage());

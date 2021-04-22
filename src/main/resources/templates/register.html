@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/fragment::head}">
-    <title>Login page</title>
+    <title>Register page</title>
 </head>
 <body>
 <header th:replace="~{fragments/fragment::navbar}">
@@ -49,9 +49,8 @@
                                 <small id="usernameError"
                                        class="invalid-feedback text-light form-text bg-danger rounded"
                                        th:errors="*{username}">Username length must be more than 3 characters</small>
-                                <small th:if="${userExist}"  id="usernameUniqueError"
-                                       class="invalid-feedback text-light form-text bg-danger rounded">Username is already occupied</small>
-
+                                <small th:if="${userExist}" id="usernameUniqueError"
+                                       class="text-light form-text bg-danger rounded">Username is already occupied</small>
                             </div>
                         </div>
                         <!-- EO: Username -->
@@ -89,6 +88,8 @@
                                 <small id="emailError"
                                        th:errors="*{email}"
                                        class="invalid-feedback text-light form-text bg-danger rounded">Must be valid email</small>
+                                <small th:if="${emailExist}" id="emailUniqueError"
+                                       class="text-light form-text bg-danger rounded">Email is already occupied</small>
                             </div>
                         </div>
                         <!-- EO: Email -->

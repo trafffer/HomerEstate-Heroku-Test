@@ -19,7 +19,7 @@ public class UserRegisterBindingModel {
     private String password;
     @NotBlank(message = "This cannot be blank")
     private String confirmPassword;
-    @NotBlank
+    @NotBlank(message = "Email cannot be blank")
     @Email
     private String email;
 

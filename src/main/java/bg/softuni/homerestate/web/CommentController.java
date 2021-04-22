@@ -1,6 +1,8 @@
 package bg.softuni.homerestate.web;
 
 import bg.softuni.homerestate.models.binding.CommentAddBindingModel;
+import bg.softuni.homerestate.models.binding.InquiryAddBindingModel;
+import bg.softuni.homerestate.models.entities.enums.ContactHours;
 import bg.softuni.homerestate.models.service.CommentServiceModel;
 import bg.softuni.homerestate.services.CommentService;
 import bg.softuni.homerestate.services.OfferService;
@@ -31,6 +33,10 @@ public class CommentController {
         if (!model.containsAttribute("comment")){
             model.addAttribute("comment",new CommentAddBindingModel());
         }
+        if (!model.containsAttribute("inquiryModel")){
+            model.addAttribute("inquiryModel", new InquiryAddBindingModel());
+        }
+        model.addAttribute("contactHours", ContactHours.values());
         model.addAttribute("commentsList",commentService.findAllByOfferId(id));
         model.addAttribute("offerModel", offerService.getOffer(id));
         return "details-offer";
@@ -55,4 +61,6 @@ public class CommentController {
         commentService.deleteById(id);
         return "redirect:/";
     }
+
+
 }

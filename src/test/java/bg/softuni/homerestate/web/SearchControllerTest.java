@@ -8,10 +8,7 @@ import bg.softuni.homerestate.models.entities.enums.Category;
 import bg.softuni.homerestate.models.entities.enums.City;
 import bg.softuni.homerestate.models.entities.enums.Type;
 import bg.softuni.homerestate.models.entities.enums.UserRole;
-import bg.softuni.homerestate.repositories.CategoryRepository;
-import bg.softuni.homerestate.repositories.OfferRepository;
-import bg.softuni.homerestate.repositories.UserRepository;
-import bg.softuni.homerestate.repositories.UserRoleRepository;
+import bg.softuni.homerestate.repositories.*;
 import bg.softuni.homerestate.services.OfferService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,6 +50,8 @@ public class SearchControllerTest {
 
     @Autowired
     private UserRoleRepository repository4;
+
+
 
     @BeforeEach
     public void setUp(){

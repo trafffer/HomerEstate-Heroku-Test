@@ -94,7 +94,6 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public void deleteOffer(Long id) {
         offerRepository.deleteById(id);
-
     }
 
     @Override
@@ -113,6 +112,30 @@ public class OfferServiceImpl implements OfferService {
                 model.getPriceHigh());
        List<OfferServiceModel> models = collectOfferServiceModels(offers);
        return mapToOfferViewModel(models);
+    }
+
+    @Override
+    public void editOffer(OfferServiceModel serviceModel, Long id) {
+        Offer offer = getOfferEntity(id);
+        offer.setType(serviceModel.getType())
+                .setCategory(getCategory(serviceModel.getCategory()))
+                .setPrice(serviceModel.getPrice())
+                .setCity(serviceModel.getCity())
+                .setAddress(serviceModel.getAddress())
+                .setArea(serviceModel.getArea())
+                .setFloor(serviceModel.getFloor())
+                .setRooms(serviceModel.getRooms())
+                .setDescription(serviceModel.getDescription())
+                .setImgUrl(serviceModel.getImgUrl().toString())
+                .setPricePerSqM(getPricePerArea(serviceModel));
+        offerRepository.save(offer);
+    }
+
+    @Override
+    public List<OfferViewModel> getOfferByAuthor() {
+        List<Offer> offers = offerRepository.findAllByAuthorOrderByVisitedDesc(userService.getUser());
+        List<OfferServiceModel> serviceModels = collectOfferServiceModels(offers);
+        return mapToOfferViewModel(serviceModels);
     }
 
     private List<OfferServiceModel> collectOfferServiceModels(List<Offer>models) {

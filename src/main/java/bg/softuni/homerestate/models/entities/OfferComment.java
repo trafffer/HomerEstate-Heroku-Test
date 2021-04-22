@@ -12,7 +12,6 @@ public class OfferComment extends BaseEntity{
     private UserEntity author;
     private LocalDateTime createdOn;
     private String textContent;
-    private LocalDateTime timeForVisit;
     private Offer offer;
 
     public OfferComment() {
@@ -38,7 +37,7 @@ public class OfferComment extends BaseEntity{
         return this;
     }
 
-    @Column(name = "text",columnDefinition = "TEXT")
+    @Column(name = "text",columnDefinition = "TEXT",nullable = false)
     public String getTextContent() {
         return textContent;
     }
@@ -48,15 +47,6 @@ public class OfferComment extends BaseEntity{
         return this;
     }
 
-    @Column(name = "time_for_visit",nullable = false)
-    public LocalDateTime getTimeForVisit() {
-        return timeForVisit;
-    }
-
-    public OfferComment setTimeForVisit(LocalDateTime timeForVisit) {
-        this.timeForVisit = timeForVisit;
-        return this;
-    }
 
     @ManyToOne
     public Offer getOffer() {

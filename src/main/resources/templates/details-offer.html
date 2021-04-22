@@ -67,41 +67,130 @@
 
                     <!--CONTACT THE AGENT
                         =========================================================================================-->
-                    <section id="submit-form">
+                    <section class="contact-the-agent">
                         <div class="ts-box">
                             <!--Agent Image & Phone-->
                             <div class="ts-center__vertical mb-4">
                                 <!--Image-->
                                 <!--Phone contact-->
                                 <figure class="mb-0">
-                                    <h5 class="mb-0">Appoint time for visit</h5>
+                                    <h5 class="mb-0">MAKE AN INQUIRY ABOUT THE OFFER</h5>
+                                </figure>
+                            </div>
+                            <form method="POST" th:action="@{/inquiries/add/{id}(id=${offerModel.id})}"
+                                  th:object="${inquiryModel}"
+                            accept-charset="UTF-8"
+                                  id="visitEnquiry" class="ts-form">
+                                <div class="form-group">
+                                    <input class="form-control"
+                                           th:errorclass="is-invalid"
+                                           th:field="*{firstName}"
+                                           placeholder="First Name (Optional)"
+                                           name="firstName"
+                                           type="text">
+                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                           th:errors="*{firstName}">
+                                        Neshto gadno.
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control"
+                                           th:errorclass="is-invalid"
+                                           th:field="*{lastName}"
+                                           placeholder="Last Name *"
+                                           name="lastName"
+                                           type="text">
+                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                           th:errors="*{lastName}">
+                                        Neshto gadno.
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control"
+                                           th:errorclass="is-invalid"
+                                           th:field="*{phoneNumber}"
+                                           placeholder="Telephone Number *"
+                                           name="phoneNumber"
+                                           type="text">
+                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                           th:errors="*{phoneNumber}">
+                                        Neshto gadno.
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control"
+                                           th:errorclass="is-invalid"
+                                           th:field="*{email}"
+                                           placeholder="Email"
+                                           name="email"
+                                           type="email">
+                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                           id="emailError"
+                                           th:errors="*{email}">
+                                        Neshto gadno.
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <select class="custom-select"
+                                            th:errorclass="is-invalid"
+                                            th:field="*{contactHour}"
+                                            name="contactHours">
+                                        <option selected="selected" value="">Contact Hours</option>
+                                        <option th:each="c : ${contactHours}"
+                                                th:value="${c}"
+                                                th:text="${c}"
+                                                th:selected="${c}==*{contactHour}"
+                                                value="all">All</option>
+                                    </select>
+                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                           th:errors="*{contactHour}">
+                                        Neshto gadno.
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control"
+                                              th:errorclass="is-invalid"
+                                              th:field="${inquiryModel.description}"
+                                              placeholder="Message"
+                                              name="messageText"
+                                              cols="50" rows="10"></textarea>
+                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                           th:errors="${inquiryModel.description}">
+                                        Neshto gadno.
+                                    </small>
+                                </div>
+                                <div class="form-group clearfix mb-0">
+                                    <button class="btn btn-primary float-right porperty-form-btn"
+                                            type="submit" value="add this form"
+                                            onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
+                                        Contact us
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                    <section id="submit-form">
+                        <div class="ts-box">
+                            <div class="ts-center__vertical mb-4">
+                                <!--Comment-->
+                                <figure class="mb-0">
+                                    <h5 class="mb-0">Add a comment about the offer</h5>
                                 </figure>
                             </div>
                             <form th:object="${comment}"
                                     method="POST" th:action="@{/comments/search/{id}(id=${offerModel.id})}"
                                  class="ts-form custom-form">
                                 <div class="form-group">
-                                    <div class="input-group mb-3">
-                                        <label for="timeForVisit" th:text="|Time for visit:|"
-                                               class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-form-label">StartedOn Date
-                                        </label>
-                                        <input th:field="*{timeForVisit}"
-                                               th:errorclass="is-invalid" id="timeForVisit"
-                                               name="startedOn" type="datetime-local"
-                                               class="form-control validate col-xl-12 col-lg-12 col-md-12 col-sm-12"
-                                               data-large-mode="true"/>
-                                        <small th:if="${#fields.hasErrors('timeForVisit')}"
-                                             class="invalid-feedback text-light form-text bg-danger rounded"
-                                            th:errors="*{timeForVisit}"
-                                                  >The date cannot be in the future!</small>
-                                    </div>
                                     <div class="form-group">
-                                    <textarea th:field="*{textContent}"
-                                              th:errorclass="is-invalid"
-                                              th:value="*{textContent}"
-                                              class="form-control"
-                                              id="textContent"
-                                              placeholder="Comment about the property" name="textContent" cols="50" rows="10"></textarea>
+                                        <label for="textContent"></label>
+                                        <textarea th:field="*{textContent}"
+                                                  th:errorclass="is-invalid"
+                                                  th:value="*{textContent}"
+                                                  class="form-control"
+                                                  id="textContent"
+                                                  required minlength="5" maxlength="240"
+                                                  aria-describedby="textContentHelpInline"
+                                                  placeholder="Comment about the property" name="textContent" cols="50" rows="10"></textarea>
                                         <small th:if="${#fields.hasErrors('textContent')}"
                                                class="invalid-feedback text-light form-text bg-danger rounded"
                                                th:errors="*{textContent}">
@@ -120,23 +209,6 @@
                             </form>
                         </div>
                     </section>
-
-                    <!--ACTIONS
-                    =============================================================================================-->
-                    <section id="actions">
-                        <div class="d-flex justify-content-between">
-                            <a id="print-button" href="https://www.homerestate.gr/en/propertyDetails/10915949?forPrint=1" class="btn btn-light mr-2 w-100" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print">
-                                <i class="fa fa-print"></i>
-                            </a>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.homerestate.gr/en/propertyDetails/10915949" class="btn btn-light mr-2 w-100 fbShareListingAction" data-toggle="tooltip" data-placement="top" title="" onclick="window.open(this.href, 'pop', 'width=600, height=400, scrollbars=no');return false;" rel="nofollow" data-original-title="Facebook Share">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="https://twitter.com/share?url=https://www.homerestate.gr/en/propertyDetails/10915949&amp;text=Apartment for sale" class="btn btn-light mr-2 w-100" data-toggle="tooltip" data-placement="top" title="" onclick="window.open(this.href,'','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=570,width=520');return false;" rel="nofollow" data-original-title="Twitter Share">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </div>
-                    </section>
-
                 </div>
                 <!--end col-md-4-->
 
@@ -165,7 +237,7 @@
                             <dt>Rooms</dt>
                             <dd th:text="*{rooms}==null ? 'n/a' : *{rooms}" class="border-bottom pb-2">1</dd>
                             <dt>Floor</dt>
-                            <dd th:text="*{floor}" class="border-bottom pb-2">3rd</dd>
+                            <dd th:text="*{floor}==null ? 'n/a' : *{floor}" class="border-bottom pb-2">3rd</dd>
                             <dt>Visited</dt>
                             <dd th:text="*{visited}" class="border-bottom pb-2">3rd</dd>
                             <dt>Added by</dt>
@@ -182,13 +254,16 @@
                     </section>
                     <div class="form-group clearfix mb-0">
                         <div class="d-flex justify-content-center mt-4">
+                            <a th:if="${#authentication.name}==*{authorUsername}"
+                               th:href="@{/offers/edit/{id}(id=*{id})}" class="btn btn-primary ts-btn-arrow btn-lg float-right"
+                               style="background-color: #1db3b8; color: #ffffff; border-color: #1db3b8; margin-right: 40px"
+                               type="button">Edit offer</a>
                             <a sec:authorize="hasRole('ROLE_ADMIN')"
                                     th:href="@{/comments/delete/{id}(id=*{id})}" class="btn btn-primary ts-btn-arrow btn-lg float-right"
                                     style="background-color: #b21f2d; color: #f4f4f4; border-color: #b21f2d"
                                type="button">Delete offer</a>
                         </div>
                     </div>
-
 
                     <!--AMENITIES
 =========================================================================================-->
@@ -197,12 +272,8 @@
                         <div th:each="c : ${commentsList}" th:object="${c}" class="input-group mb-3">
                             <label th:text="|Added by *{authorUsername} on *{createdOn}|"></label>
                             <div th:text="*{textContent}"  id="comment"  type="text"
-                                   class="form-control validate col-xl-7 col-lg-7 col-md-7 col-sm-7"
+                                   class="form-control validate col-xl-12 col-lg-12 col-md-12 col-sm-12"
                             style="border-radius: 0.185rem">
-                            </div>
-                            <div th:text="|Reserved time for visit: *{timeForVisit}|"  id="visit" type="text"
-                                   class="form-control validate col-xl-5 col-lg-5 col-md-5 col-sm-5"
-                                   style="border-radius: 0.185rem">
                             </div>
                         </div>
                     </section>
