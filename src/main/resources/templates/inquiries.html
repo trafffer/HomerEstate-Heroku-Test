@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragment::head}">
+    <title>Inquiries</title>
+</head>
+<body>
+<header th:replace="~{fragments/fragment::navbar}">
+</header>
+<main id="ts-main" style="margin-top: 116px;">
+    <section id="featured-properties" class="ts-block pt-5"
+             th:style="'background-image: url(/img/search.jpg)'">
+        <div class="container">
+            <!--Title-->
+            <div class="ts-title text-center" style="margin-bottom:1rem;">
+                <h1 class="border-bottom text-center text-light" style="background: #4b88a6">My offers</h1>
+            </div>
+            <div class="row" id="offerList">
+                <div class="col-sm-6 col-md-6 col-lg-4"
+                     th:each="o : ${offers}" th:object="${o}">
+                    <div class="card ts-item ts-card ts-item__lg">
+                        <div id="offerId#1" th:value="*{id}" th:text="|Offer ID: *{id}|">
+                        </div>
+                        <a th:href="@{/comments/search/{id}(id=*{id})}">
+                        <img class="card-img-top  ts-item__image ts-item-tpp" alt="" th:src="*{imgUrl}" data-holder-rendered="true"
+                             style="height: 225px; width: 100%; display: block;">
+                        </a>
+                        <div class="card-body">
+                            <div th:text="|€ *{price}|"
+                                 th:value="*{price}"
+                                 class="ts-item__info-badge">
+                                € 69,000
+                            </div>
+                            <figure class="ts-item__info" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)">
+                                <h4 th:text="|*{category} for *{type}|">Apartment for sale</h4>
+                                <aside>
+                                    <i class="fa fa-map-marker mr-2">
+                                        <i th:text="|  *{city}, *{address}|" style="font-style: normal; font-weight: normal"></i></i>
+                                </aside>
+                            </figure>
+                            <div class="ts-description-lists">
+                                <dl>
+                                    <dt>Area</dt>
+                                    <dd th:text="|*{area} m²|"
+                                    >34 m²</dd>
+                                </dl>
+                                <dl>
+                                    <dt th:text="|Price per sq.m|">Rooms</dt>
+                                    <dd th:text="|*{pricePerSqM}€/m²|"
+                                    >1</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="navbar-toggler"
+                                    th:id="|clickable${o.id}|"
+                                    type="button"
+                                    th:value="*{id}"
+                                    onmouseenter="clickable(this.value);" onmouseleave="clickable(this.value)">
+                            <span class="ts-btn-arrow">Inquiries</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12" th:id="|offerList${o.id}|" style="margin-top: 60px">
+                    </div>
+            </div>
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
+    </section>
+</main>
+<footer th:replace="~{fragments/fragment::footer}">
+</footer>
+<script type="text/javascript">
+    function clickable (id) {
+        console.log("function is starting")
+        const searchBar = document.getElementById("clickable"+id.toString());
+        const offerList = document.getElementById("offerList"+id.toString());
+        const url = "http://localhost:8080/details/all/" + id.toString()
+        const allInquiries = [];
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                for (let d of data) {
+                    allInquiries.push(d);
+                }
+            });
+
+
+       searchBar.addEventListener('click',(e)=>{
+            let x = document.getElementById("offerList"+id.toString());
+            if (x.className === "col-12") {
+                displayOffers(allInquiries);
+                x.className += " show";
+            } else {
+                x.className = "col-12"
+                clearOffers(allInquiries);
+            }
+        })
+
+        const clearOffers = (offers) =>{
+            offerList.innerHTML = offers
+                .map((a) => {
+                    return ` `
+                })
+                .join('');
+        }
+
+       const displayOffers = (offers) => {
+            offerList.innerHTML = offers
+                .map((a) => {
+                    return `<div class="card ts-item ts-card ts-item__lg" id="inquiries2" style="margin-bottom: 60px">
+                             <div class="card-body">
+                                <figure class="ts-item__info" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%)">
+                                    <h4>Inquiry ID: ${a.id} Created on: ${a.createdOn}</h4>
+                                </figure>
+                                <div class="ts-description-lists">
+                                    <dl>
+                                        <dt>Full name</dt>
+                                        <dd>${a.firstName} ${a.lastName}</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>Phone number</dt>
+                                        <dd>${a.phoneNumber}</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>Email</dt>
+                                        <dd>${a.email}</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>Contact hour</dt>
+                                        <dd>${a.contactHour}</dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>Message</dt>
+                                        <dd>${a.description}</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                </div>`
+                })
+                .join('');
+        }
+    }
+</script>
+</body>
+</html>
