@@ -2,7 +2,7 @@ const offerList = document.getElementById('offerList#1');
 const searchBar = document.getElementById('currency');
 const allOffers = [];
 
-fetch("http://localhost:8080/currency/api")
+fetch("https://homerestate.herokuapp.com/currency/api")
     .then(response => response.json())
     .then(data => {
         for (let d of data) {
