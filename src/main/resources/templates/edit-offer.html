@@ -22,373 +22,363 @@
         <div class="splitPage__column right" style="padding-top:0;">
             <div class="splitPage__column__inner" style="padding-bottom:0;">
                 <div class="splitPage">
-                  <div class="splitPage__column right">
-                    <div class="splitPage__column__inner">
-                    <h3 th:text="|Offer #${viewModel.id} attributes|" class="border-bottom" >Offer attributes</h3>
-                                <section id="offer-information"
-                                         th:object="${viewModel}"
-                                         class="" style="margin-bottom:0">
-                                    <div>
-                                        <div class="col-auto">
-                                            <label for="offerType"
-                                                   class="col-form-label text-dark">Type:</label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input th:field="*{type}"
-                                                   readonly
-                                                   type="text"
-                                                   id="offerType"
-                                                   class="form-control"
-                                                   style="background-color: white">
-                                        </div>
+                    <div class="splitPage__column right">
+                        <div class="splitPage__column__inner">
+                            <h3 th:text="|Offer #${viewModel.id} attributes|" class="border-bottom" >Offer attributes</h3>
+                            <section id="offer-information"
+                                     th:object="${viewModel}"
+                                     class="" style="margin-bottom:0">
+                                <div>
+                                    <div class="col-auto">
+                                        <label for="offerType"
+                                               class="col-form-label text-dark">Type:</label>
                                     </div>
-                                    <!-- EO: Type -->
-
-                                    <div>
-                                        <div class="col-auto">
-                                            <label for="offerCategory"
-                                                   class="col-form-label text-dark">Category:</label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input th:field="*{category.name}"
-                                                   readonly
-                                                   type="text"
-                                                   id="offerCategory"
-                                                   class="form-control"
-                                                   style="background-color: white">
-                                        </div>
+                                    <div class="col-auto">
+                                        <input th:field="*{type}"
+                                               readonly
+                                               type="text"
+                                               id="offerType"
+                                               class="form-control"
+                                               style="background-color: white">
                                     </div>
-                                    <!-- EO: Offer Category -->
+                                </div>
+                                <!-- EO: Type -->
 
-                                    <div>
-                                        <div class="col-auto">
-                                            <label for="offerPrice"
-                                                   class="col-form-label text-dark">Price:</label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input th:field="*{price}"
-                                                   readonly
-                                                   type="text"
-                                                   id="offerPrice"
-                                                   class="form-control"
-                                                   style="background-color: white">
-                                        </div>
+                                <div>
+                                    <div class="col-auto">
+                                        <label for="offerCategory"
+                                               class="col-form-label text-dark">Category:</label>
                                     </div>
-                                    <!-- EO: Offer price -->
-
-                                    <div style="margin-top: 1px">
-                                        <div class="col-auto">
-                                            <label for="offerCity"
-                                                   class="col-form-label text-dark">City:</label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input th:field="*{city.name}"
-                                                   readonly
-                                                   type="text"
-                                                   id="offerCity"
-                                                   class="form-control"
-                                                   style="background-color: white">
-                                        </div>
+                                    <div class="col-auto">
+                                        <input th:field="*{category.name}"
+                                               readonly
+                                               type="text"
+                                               id="offerCategory"
+                                               class="form-control"
+                                               style="background-color: white">
                                     </div>
-                                    <!-- EO: Offer city -->
+                                </div>
+                                <!-- EO: Offer Category -->
 
-                                    <div>
-                                        <div class="col-auto">
-                                            <label for="offerAddress"
-                                                   class="col-form-label text-dark">Address:</label>
-                                        </div>
-                                        <div class="col-auto">
+                                <div>
+                                    <div class="col-auto">
+                                        <label for="offerPrice"
+                                               class="col-form-label text-dark">Price:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input th:field="*{price}"
+                                               readonly
+                                               type="text"
+                                               id="offerPrice"
+                                               class="form-control"
+                                               style="background-color: white">
+                                    </div>
+                                </div>
+                                <!-- EO: Offer price -->
+
+                                <div style="margin-top: 1px">
+                                    <div class="col-auto">
+                                        <label for="offerCity"
+                                               class="col-form-label text-dark">City:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input th:field="*{city.name}"
+                                               readonly
+                                               type="text"
+                                               id="offerCity"
+                                               class="form-control"
+                                               style="background-color: white">
+                                    </div>
+                                </div>
+                                <!-- EO: Offer city -->
+
+                                <div>
+                                    <div class="col-auto">
+                                        <label for="offerAddress"
+                                               class="col-form-label text-dark">Address:</label>
+                                    </div>
+                                    <div class="col-auto">
                                             <textarea th:field="*{address}"
                                                       readonly
-                                                   type="text"
-                                                   id="offerAddress"
-                                                   class="form-control"
+                                                      type="text"
+                                                      id="offerAddress"
+                                                      class="form-control"
                                                       style="background-color: white">
                                             </textarea>
-                                        </div>
                                     </div>
-                                    <!-- EO: Offer address -->
+                                </div>
+                                <!-- EO: Offer address -->
 
-                                    <div>
-                                        <div class="col-auto">
-                                            <label for="offerArea"
-                                                   class="col-form-label text-dark">Area:</label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input th:field="*{area}"
-                                                   readonly
-                                                   type="text"
-                                                   id="offerArea"
-                                                   class="form-control"
-                                                   style="background-color: white">
-                                        </div>
+                                <div>
+                                    <div class="col-auto">
+                                        <label for="offerArea"
+                                               class="col-form-label text-dark">Area:</label>
                                     </div>
-                                    <!-- EO: Offer area -->
-
-                                    <div>
-                                        <div class="col-auto">
-                                            <label for="offerFloor"
-                                                   class="col-form-label text-dark">Floor:</label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input th:field="*{floor}"
-                                                   readonly
-                                                   type="text"
-                                                   id="offerFloor"
-                                                   class="form-control"
-                                                   style="background-color: white">
-                                        </div>
+                                    <div class="col-auto">
+                                        <input th:field="*{area}"
+                                               readonly
+                                               type="text"
+                                               id="offerArea"
+                                               class="form-control"
+                                               style="background-color: white">
                                     </div>
-                                    <!-- EO: Offer floor -->
+                                </div>
+                                <!-- EO: Offer area -->
 
-                                    <div>
-                                        <div class="col-auto">
-                                            <label for="offerRooms"
-                                                   class="col-form-label text-dark">Rooms:</label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input th:field="*{rooms}"
-                                                   readonly
-                                                   type="text"
-                                                   id="offerRooms"
-                                                   class="form-control"
-                                                   style="background-color: white">
-                                        </div>
+                                <div>
+                                    <div class="col-auto">
+                                        <label for="offerFloor"
+                                               class="col-form-label text-dark">Floor:</label>
                                     </div>
-                                    <!-- EO: Offer rooms -->
+                                    <div class="col-auto">
+                                        <input th:field="*{floor}"
+                                               readonly
+                                               type="text"
+                                               id="offerFloor"
+                                               class="form-control"
+                                               style="background-color: white">
+                                    </div>
+                                </div>
+                                <!-- EO: Offer floor -->
 
-                                    <div>
-                                        <div class="col-auto">
-                                            <label for="offerDescription"
-                                                   class="col-form-label text-dark">Description:</label>
-                                        </div>
-                                        <div class="col-auto">
+                                <div>
+                                    <div class="col-auto">
+                                        <label for="offerRooms"
+                                               class="col-form-label text-dark">Rooms:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input th:field="*{rooms}"
+                                               readonly
+                                               type="text"
+                                               id="offerRooms"
+                                               class="form-control"
+                                               style="background-color: white">
+                                    </div>
+                                </div>
+                                <!-- EO: Offer rooms -->
+
+                                <div>
+                                    <div class="col-auto">
+                                        <label for="offerDescription"
+                                               class="col-form-label text-dark">Description:</label>
+                                    </div>
+                                    <div class="col-auto">
                                             <textarea th:field="*{description}"
                                                       readonly
-                                                   type="text"
-                                                   id="offerDescription"
-                                                   class="form-control"
+                                                      type="text"
+                                                      id="offerDescription"
+                                                      class="form-control"
                                                       style="background-color: white">
                                             </textarea>
-                                        </div>
                                     </div>
-                                    <!-- EO: Offer description -->
-                                </section>
+                                </div>
+                                <!-- EO: Offer description -->
+                            </section>
+                        </div>
                     </div>
-                  </div>
-                  <div class="splitPage__column right">
-                    <div class="splitPage__column__inner">
-                    <h3 class="border-bottom" >New attributes</h3>
-                    <section id="submit-form" style="margin-bottom:0">
-                      <form method="POST" th:action="@{/offers/edit/{id}(id=${viewModel.id})}"
-                         th:object="${offerModel}" class="ts-form custom-form" enctype="multipart/form-data" >
-                        <section id="basic-information" class="" style="margin-bottom:1rem;">
-                            <div class="row">
-                                <div class="form-group alt" style="margin-left: 20px">
-                                    <div class="col-auto">
-                                        <label class="col-form-label text-dark">Enquiry type:</label>
-                                    </div>
-                                        <div id="features-checkboxes">
-                                            <div class="custom-checkboxes">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input th:field="*{type}"
-                                                            id="typeSale"
-                                                           class="custom-control-input"
-                                                           name="type"
-                                                           type="radio"
-                                                           th:value="SALE">
-                                                    <label class="custom-control-label" for="typeSale">Sale</label>
+                    <div class="splitPage__column right">
+                        <div class="splitPage__column__inner">
+                            <h3 class="border-bottom" >New attributes</h3>
+                            <section id="submit-form" style="margin-bottom:0">
+                                <form method="POST" th:action="@{/offers/edit/{id}(id=${viewModel.id})}"
+                                      th:object="${offerEditModel}" class="ts-form custom-form" enctype="multipart/form-data" >
+                                    <section id="basic-information" class="" style="margin-bottom:1rem;">
+                                        <div class="row">
+                                            <div class="form-group alt" style="margin-left: 20px">
+                                                <div class="col-auto">
+                                                    <label class="col-form-label text-dark">Enquiry type:</label>
                                                 </div>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input  th:field="*{type}"
-                                                            id="typeRent" class="custom-control-input" name="typeRent" type="radio"
-                                                           th:value="RENT">
-                                                    <label class="custom-control-label" for="typeRent">Rental</label>
+                                                <div id="features-checkboxes">
+                                                    <div class="custom-checkboxes">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input th:field="*{type}"
+                                                                   id="typeSale"
+                                                                   class="custom-control-input"
+                                                                   name="type"
+                                                                   type="radio"
+                                                                   th:value="SALE">
+                                                            <label class="custom-control-label" for="typeSale">Sale</label>
+                                                        </div>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input  th:field="*{type}"
+                                                                    id="typeRent" class="custom-control-input" name="typeRent" type="radio"
+                                                                    th:value="RENT">
+                                                            <label class="custom-control-label" for="typeRent">Rental</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <small th:if="${noType}"
-                                                       class="text-light form-text bg-danger rounded"
-                                                       th:errors="*{type}">
-                                                    Neshto gadno.
-                                                </small>
                                             </div>
-                                        </div>
-                                </div>
-                                <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 2px">
-                                    <div class="form-group">
-                                        <label for="category" class="col-form-label text-dark">Category*</label>
-                                        <select th:errorclass="is-invalid"
-                                                th:field="*{category}"
-                                                class="custom-select ts-selected"
-                                                id="category"
-                                                style="width:100%"
-                                                name="category"
-                                                aria-invalid="false">
-                                            <option value="" selected="selected">Select category</option>
-                                            <option th:each="c : ${categories}"
-                                                    th:value="${c}"
-                                                    th:text="${c.name}"
-                                                    th:selected="${c}==*{category}"
-                                                    value="residential">Residential</option>
-                                        </select>
-                                        <small class="invalid-feedback text-light form-text bg-danger rounded"
-                                               th:errors="*{category}">
-                                            Neshto gadno.
-                                        </small>
-                                    </div>
-                                  </div>
-                                <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 2px">
-                                    <div class="input-group">
-                                        <label for="newPrice" class="col-form-label text-dark">Price*</label>
-                                       <input th:field="*{price}"
-                                           th:value="*{price}"
-                                           th:errorclass="is-invalid"
-                                           class="form-control border-right-0"
-                                              placeholder="Price"
-                                              name="newPrice" type="text" id="newPrice">
-                                       <div class="input-group-append">
-                                         <span class="input-group-text bg-white border-left-0">€</span>
-                                       </div>
-                                         <small class="invalid-feedback text-light form-text bg-danger rounded"
-                                           th:errors="*{price}">
-                                           Neshto gadno.
-                                      </small>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 2px">
-                                    <div class="form-group">
-                                        <label for="city" class="col-form-label text-dark">City*</label>
-                                        <select class="custom-select ts-selected"
-                                                th:errorclass="is-invalid"
-                                                th:field="*{city}"
-                                                id="city"
-                                                style="width:100%" name="city"
-                                                aria-invalid="false">
-                                            <option value="" selected="selected">Select city</option>
-                                            <option th:each="c : ${cities}"
-                                                    th:value="${c}"
-                                                    th:text="${c.name}"
-                                                    th:selected="${c}==*{city}"
-                                                    value="apartment">City</option>
-                                            </select>
-                                        <small class="invalid-feedback text-light form-text bg-danger rounded"
-                                               th:errors="*{city}">
-                                            Neshto gadno.
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 2px">
-                                    <div class="input-group">
-                                        <label for="address" class="col-form-label text-dark">Address*</label>
-                                        <textarea th:field="*{address}"
-                                               th:errorclass="is-invalid"
-                                               th:value="*{address}"
-                                                class="form-control"
-                                               placeholder="Addres in the city"
-                                               name="address"
-                                               type="text"
-                                               id="address">
+
+                                            <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 2px">
+                                                <div class="form-group">
+                                                    <label for="category" class="col-form-label text-dark">Category*</label>
+                                                    <select th:errorclass="is-invalid"
+                                                            th:field="*{category}"
+                                                            class="custom-select ts-selected"
+                                                            id="category"
+                                                            style="width:100%"
+                                                            name="category"
+                                                            aria-invalid="false">
+                                                        <option value="" selected="selected">Select category</option>
+                                                        <option th:each="c : ${categories}"
+                                                                th:value="${c}"
+                                                                th:text="${c.name}"
+                                                                th:selected="${c}==*{category}"
+                                                                value="residential">Residential</option>
+                                                    </select>
+                                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                                           th:errors="*{category}">
+                                                        Neshto gadno.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 2px">
+                                                <div class="input-group">
+                                                    <label for="price" class="col-form-label text-dark">Price*</label>
+                                                    <input th:field="*{price}"
+                                                           th:errorclass="is-invalid"
+                                                           class="form-control border-right-0"
+                                                           placeholder="Price"
+                                                           name="price" type="text" id="price">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text bg-white border-left-0">€</span>
+                                                    </div>
+                                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                                           th:errors="*{price}">
+                                                        Neshto gadno.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 2px">
+                                                <div class="form-group">
+                                                    <label for="city" class="col-form-label text-dark">City*</label>
+                                                    <select class="custom-select ts-selected"
+                                                            th:errorclass="is-invalid"
+                                                            th:field="*{city}"
+                                                            id="city"
+                                                            style="width:100%" name="city"
+                                                            aria-invalid="false">
+                                                        <option value="" selected="selected">Select city</option>
+                                                        <option th:each="c : ${cities}"
+                                                                th:value="${c}"
+                                                                th:text="${c.name}"
+                                                                th:selected="${c}==*{city}"
+                                                                value="apartment">City</option>
+                                                    </select>
+                                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                                           th:errors="*{city}">
+                                                        Neshto gadno.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 2px">
+                                                <div class="input-group">
+                                                    <label for="address" class="col-form-label text-dark">Address*</label>
+                                                    <textarea th:field="*{address}"
+                                                              th:errorclass="is-invalid"
+                                                              th:value="*{address}"
+                                                              class="form-control"
+                                                              placeholder="Addres in the city"
+                                                              name="address"
+                                                              type="text"
+                                                              id="address">
                                         </textarea>
-                                        <small class="invalid-feedback text-light form-text bg-danger rounded"
-                                               th:errors="*{address}">
-                                            Neshto gadno.
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 4px">
-                                    <div class="input-group">
-                                        <label for="area" class="col-form-label text-dark">Living area:</label>
-                                        <input  th:field="*{area}"
-                                                th:errorclass="is-invalid"
-                                                th:value="*{area}"
-                                                class="form-control border-right-0"
-                                                placeholder="Living Area in sq.m."
-                                                name="area"
-                                                type="text"
-                                                id="area">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text bg-white border-left-0">sq.m.</span>
-                                        </div>
-                                        <small class="invalid-feedback text-light form-text bg-danger rounded"
-                                               th:errors="*{area}">
-                                            Neshto gadno.
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="input-group" style="margin-top: 4px">
-                                        <label for="floor" class="col-form-label text-dark">Floor:</label>
-                                        <input  th:field="*{floor}"
-                                                th:errorclass="is-invalid"
-                                                th:value="*{floor}"
-                                                class="form-control"
-                                                placeholder="Floor#"
-                                                name="floor"
-                                                type="text"
-                                                id="floor">
-                                        <small class="invalid-feedback text-light form-text bg-danger rounded"
-                                               th:errors="*{floor}">
-                                            Neshto gadno.
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="input-group" style="margin-top: 4px">
-                                        <label for="rooms" class="col-form-label text-dark">Rooms:</label>
-                                        <input  th:field="*{rooms}"
-                                                th:errorclass="is-invalid"
-                                                th:value="*{rooms}"
-                                                class="form-control"
-                                                placeholder="Rooms#"
-                                                name="rooms"
-                                                type="text"
-                                                id="rooms">
-                                        <small class="invalid-feedback text-light form-text bg-danger rounded"
-                                               th:errors="*{rooms}">
-                                            Neshto gadno.
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 2px">
-                                    <div class="form-group">
-                                        <label for="description" class="col-form-label text-dark">Description:</label>
-                                        <textarea th:field="*{description}"
-                                                  th:errorclass="is-invalid"
-                                                  th:value="*{description}"
-                                                  class="form-control"
-                                                  placeholder="Description"
-                                                  cols="50" rows="10"
-                                                  type="text"
-                                                  id="description"></textarea>
-                                                <small class="invalid-feedback text-light form-text bg-danger rounded"
-                                                       th:errors="*{description}">
-                                                    Neshto gadno.
-                                                </small>
+                                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                                           th:errors="*{address}">
+                                                        Neshto gadno.
+                                                    </small>
+                                                </div>
                                             </div>
-                                </div>
-                                <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
-                                    <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="form-group">
-                                            <label class="control-label" for="files">Upload new pictures:</label>
-                                            <input type="file" class="form-control" id="files"
-                                                   placeholder="Upload Images" name="files" multiple/>
-                                            <small th:if="${noPictures}"
-                                                   class="text-light form-text bg-danger rounded"
-                                                   th:text="|You must select pictures!|">
-                                                Neshto gadno.
-                                            </small>
+                                            <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 4px">
+                                                <div class="input-group">
+                                                    <label for="area" class="col-form-label text-dark">Living area:</label>
+                                                    <input  th:field="*{area}"
+                                                            th:errorclass="is-invalid"
+                                                            th:value="*{area}"
+                                                            class="form-control border-right-0"
+                                                            placeholder="Living Area in sq.m."
+                                                            name="area"
+                                                            type="text"
+                                                            id="area">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text bg-white border-left-0">sq.m.</span>
+                                                    </div>
+                                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                                           th:errors="*{area}">
+                                                        Neshto gadno.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="input-group" style="margin-top: 4px">
+                                                    <label for="floor" class="col-form-label text-dark">Floor:</label>
+                                                    <input  th:field="*{floor}"
+                                                            th:errorclass="is-invalid"
+                                                            th:value="*{floor}"
+                                                            class="form-control"
+                                                            placeholder="Floor#"
+                                                            name="floor"
+                                                            type="text"
+                                                            id="floor">
+                                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                                           th:errors="*{floor}">
+                                                        Neshto gadno.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="input-group" style="margin-top: 4px">
+                                                    <label for="rooms" class="col-form-label text-dark">Rooms:</label>
+                                                    <input  th:field="*{rooms}"
+                                                            th:errorclass="is-invalid"
+                                                            th:value="*{rooms}"
+                                                            class="form-control"
+                                                            placeholder="Rooms#"
+                                                            name="rooms"
+                                                            type="text"
+                                                            id="rooms">
+                                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                                           th:errors="*{rooms}">
+                                                        Neshto gadno.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 2px">
+                                                <div class="form-group">
+                                                    <label for="description" class="col-form-label text-dark">Description:</label>
+                                                    <textarea th:field="*{description}"
+                                                              th:errorclass="is-invalid"
+                                                              th:value="*{description}"
+                                                              class="form-control"
+                                                              placeholder="Description"
+                                                              cols="50" rows="10"
+                                                              type="text"
+                                                              id="description"></textarea>
+                                                    <small class="invalid-feedback text-light form-text bg-danger rounded"
+                                                           th:errors="*{description}">
+                                                        Neshto gadno.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+                                                <div class="col-sm-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="files">Upload new pictures:</label>
+                                                        <input type="file" class="form-control" id="files"
+                                                               placeholder="Upload Images" name="files" multiple/>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary ts-btn-arrow btn-lg float-right"
+                                                            id="btnSubmit" name="button" value="add this form"
+                                                            onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">Submit offer</button>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <button type="submit" class="btn btn-primary ts-btn-arrow btn-lg float-right"
-                                                id="btnSubmit" name="button" value="add this form"
-                                                onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">Submit offer</button>
-                                    </div>
+                                    </section>
                                 </form>
-                            </div>
-                        </section>
-                    </form>
-                    <!--end #form-submit-->
-                </section>
-                </div>
-                </div>
+                                <!--end #form-submit-->
+                            </section>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!--end container-->
