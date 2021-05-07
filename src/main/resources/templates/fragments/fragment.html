@@ -59,13 +59,13 @@
     </nav>
     <nav id="ts-primary-navigation" class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid" style="padding:0;">
-            <a class="navbar-brand" href="/" style="width: 200px">
-                <span class="logo__holder">
-                    <img src="/img/logo.jpg" alt="">
+            <a class="navbar-brand" href="/" style="padding-bottom: 20px">
+                <span class="logo__holder" style="min-height: 70px">
+                    <img src="/img/logo.jpg" alt="" style="border-width: 5px; width: auto; padding: 5px">
                 </span>
             </a>
             <span  sec:authorize="${isAuthenticated()}" th:text="|WELCOME ${#authentication.name}|"
-                  style="font-size: x-large" ></span>
+                  style="font-size: x-large;"></span>
             <button class="navbar-toggler"
                     id="toggler"
                     type="button"
