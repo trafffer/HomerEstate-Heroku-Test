@@ -13,22 +13,24 @@
     <!--GALLERY CAROUSEL
      =========================================================================================================-->
     <section id="gallery-carousel" class="" style="margin-bottom:10px;">
-        <div class="swiper-container ts-gallery-carousel ts-gallery-carousel__multi details-custom-slider swiper-container-initialized swiper-container-horizontal swiper-container-free-mode show">
-            <div  class="swiper-wrapper row" style="transform: translate3d(0px, 0px, 0px);">
-                <div th:each="p : *{imgUrl}" class="swiper-slide swiper-slide-active col" style="margin-right: 20px;">
+        <div class="swiper-container ts-gallery-carousel ts-gallery-carousel__multi details-custom-slider swiper-container-initialized swiper-container-horizontal swiper-container-free-mode show"
+             style="overflow: hidden">
+            <div class="carousell__track">
+                <div class="carousell__slide"
+                     th:each="p : *{imgUrl}" style="margin-right: 20px;">
                     <a th:href="${p}" class="popup-image" style="display: block">
-                        <img th:src="${p}" alt="">
+                        <img class="carousell__image" th:src="${p}" alt="">
                         <span th:href="${p}" class="ts-zoom">
-                                <i class="fa fa-search-plus" style="margin:0;"></i>
-                            </span>
+                           <i class="fa fa-search-plus" style="margin:0;"></i>
+                       </span>
                     </a>
                 </div>
-
             </div>
-            <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
-                <span th:each="p : *{imgUrl}" class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
-                </div>
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+            <div class="carousell__nav">
+                <button th:each="p : *{imgUrl}"
+                        class="carousel__indicator"></button>
+            </div>
+        </div>
     </section>
 
     <!--PAGE TITLE
@@ -286,5 +288,6 @@
 </main>
 <footer th:replace="~{fragments/fragment::footer}">
 </footer>
+<script src="/js/newCarousel.js"></script>
 </body>
 </html>
