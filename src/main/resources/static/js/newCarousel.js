@@ -16,7 +16,7 @@ function setSlidePosition(slide,index){
 }
 
 function slideLeft(index) {
-    return slides[index].clientWidth;
+    return slides[index].clientWidth+20;
 }
 
 
