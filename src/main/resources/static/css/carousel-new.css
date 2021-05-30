@@ -23,6 +23,7 @@
     height: 100%;
     transition: transform 250ms ease-in;
     box-sizing: content-box;
+    touch-action: none;
 }
 
 .carousell__slide{
