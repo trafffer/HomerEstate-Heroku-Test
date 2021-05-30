@@ -18,12 +18,12 @@
             <div class="carousell__track">
                 <div class="carousell__slide"
                      th:each="p : *{imgUrl}" style="margin-right: 20px;">
-                    <a th:href="${p}" class="popup-image" style="display: block">
+                    <div class="popup-image" style="display: block; position: relative" >
                         <img class="carousell__image" th:src="${p}" alt="">
-                        <span th:href="${p}" class="ts-zoom">
-                           <i class="fa fa-search-plus" style="margin:0;"></i>
-                       </span>
-                    </a>
+                        <a th:href="${p}" class="ts-zoom">
+                            <i class="fa fa-search-plus" style="margin:0;"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="carousell__nav">
